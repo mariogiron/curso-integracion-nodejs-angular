@@ -1,0 +1,24 @@
+@url = http://localhost:3003/api
+
+POST {{url}}/users
+Content-Type: application/json
+
+{
+    "name": "mario",
+    "email": "mario@gmail.com",
+    "password": "123456",
+    "role": "admin"
+}
+
+### tickets
+GET {{url}}/tickets
+
+###
+POST {{url}}/tickets
+Content-Type: application/json
+
+{
+    "title": "Tarea para mañana",
+    "description": "Tenemos que hacer el deploy",
+    "created_by": 1
+}
