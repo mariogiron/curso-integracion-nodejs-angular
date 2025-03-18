@@ -1,4 +1,4 @@
-@url = http://localhost:3003/api
+@url = http://localhost:3000/api
 
 POST {{url}}/users
 Content-Type: application/json
@@ -12,6 +12,15 @@ Content-Type: application/json
 
 ### tickets
 GET {{url}}/tickets
+
+
+
+
+
+
+
+
+
 
 ###
 POST {{url}}/tickets
