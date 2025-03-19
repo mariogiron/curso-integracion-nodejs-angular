@@ -9,15 +9,28 @@ const getAll = async (req, res, next) => {
     }
 }
 
-const getById = (req, res, next) => {
+const getById = async (req, res, next) => {
     const { ticketId } = req.params;
-    res.json({
-        ticket: ticketId
-    })
+
+    try {
+        const ticket = await Ticket.selectById(ticketId);
+        if (!ticket) {
+            return res.status(404).json({ message: 'No existe ningún ticket con ese ID' });
+        }
+        res.json(ticket);
+    } catch (error) {
+        next(error);
+    }
 }
 
-const create = (req, res, next) => {
-    res.json('create');
+const create = async (req, res, next) => {
+    try {
+        const result = await Ticket.insert(req.body);
+        const ticket = await Ticket.selectById(result.insertId);
+        res.json(ticket);
+    } catch (error) {
+        next(error);
+    }
 }
 
 module.exports = {

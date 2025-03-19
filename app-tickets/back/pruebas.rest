@@ -11,7 +11,7 @@ Content-Type: application/json
 }
 
 ### tickets
-GET {{url}}/tickets
+GET {{url}}/tickets/341
 
 
 
@@ -27,7 +27,7 @@ POST {{url}}/tickets
 Content-Type: application/json
 
 {
-    "title": "Tarea para mañana",
-    "description": "Tenemos que hacer el deploy",
-    "created_by": 1
+    "title": "Tarea super urgente",
+    "description": "Cambiar los botones del formulario",
+    "created_by": 2
 }

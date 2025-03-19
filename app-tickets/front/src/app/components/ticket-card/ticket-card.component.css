@@ -1,0 +1,16 @@
+article {
+    width: 300px;
+    border: 2px solid gray;
+    border-radius: 10px;
+    padding: 20px 40px;
+}
+
+h3 {
+    border-bottom: 3px solid gray;
+    padding-bottom: 10px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
