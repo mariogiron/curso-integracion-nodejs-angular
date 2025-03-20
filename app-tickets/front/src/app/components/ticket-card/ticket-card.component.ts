@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Ticket } from '../../interfaces/ticket.interface';
 
 @Component({
   selector: 'ticket-card',
@@ -7,5 +8,7 @@ import { Component } from '@angular/core';
   styleUrl: './ticket-card.component.css'
 })
 export class TicketCardComponent {
+
+  @Input({ required: true }) ticket: Ticket | undefined;
 
 }

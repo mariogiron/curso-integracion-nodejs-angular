@@ -4,6 +4,7 @@ const getAll = async (req, res, next) => {
     try {
         const tickets = await Ticket.selectAll();
         res.json(tickets);
+        // res.status(404).json({ message: 'Error de pacotilla' });
     } catch (error) {
         next(error);
     }

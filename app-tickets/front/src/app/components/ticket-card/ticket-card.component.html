@@ -1,10 +1,12 @@
+@if(ticket){
 <article>
-    <h3>TÍTULO TICKET</h3>
-    <p>DESCRIPCIÓN</p>
+    <h3>{{ ticket.title }}</h3>
+    <p>{{ ticket.description }}</p>
     <ul>
-        <li>CREADOR</li>
-        <li>ASIGNADO</li>
-        <li>ESTADO</li>
-        <li>PRIORIDAD</li>
+        <li>Creado por: {{ ticket.created_by }}</li>
+        <li>Asignado a: {{ ticket.assigned_to }}</li>
+        <li>Estado: {{ ticket.status }}</li>
+        <li>Prioridad: {{ ticket.priority }}</li>
     </ul>
 </article>
+}
