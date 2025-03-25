@@ -6,6 +6,11 @@
     border-color: tomato;
 }
 
+.error {
+    color: tomato;
+    font-size: .8rem;
+}
+
 /* 
     ng-untouched    ng-touched
     ng-pristine     ng-dirty

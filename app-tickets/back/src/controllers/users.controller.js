@@ -1,5 +1,14 @@
 const User = require('../models/users.model');
 
+const getAll = async (req, res, next) => {
+    try {
+        const users = await User.selectAll();
+        res.json(users);
+    } catch (error) {
+        next(error);
+    }
+}
+
 // Crear un usuario con los datos (req.body) recibidos en la petición
 // - Insert en la BD
 // - Recuperar el resultado del insert
@@ -15,5 +24,5 @@ const register = async (req, res, next) => {
 }
 
 module.exports = {
-    register
+    register, getAll
 }

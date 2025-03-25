@@ -9,6 +9,6 @@ export const routes: Routes = [
     { path: 'tickets/:ticketId', component: TicketDetailComponent },
 ];
 
-//  /tickets/new
+//  /tickets/12
 
 // TODO: Children routes layout

@@ -1,5 +1,11 @@
-import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, inject, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+
+import { TicketsService } from '../../services/tickets.service';
+import { UsersService } from '../../services/users.service';
+import { User } from '../../interfaces/user.interface';
 
 @Component({
   selector: 'app-new-ticket',
@@ -10,6 +16,11 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 export class NewTicketComponent {
 
   newTicketForm: FormGroup;
+  arrUsers: User[] = [];
+
+  ticketsService = inject(TicketsService);
+  usersService = inject(UsersService);
+  router = inject(Router);
 
   constructor() {
     this.newTicketForm = new FormGroup({
@@ -21,10 +32,29 @@ export class NewTicketComponent {
     });
   }
 
-  onSubmit() {
+  async ngOnInit() {
+    this.arrUsers = await this.usersService.getAll();
+  }
+
+  async onSubmit() {
+    this.newTicketForm.markAllAsTouched();
     if (this.newTicketForm.valid) {
-      console.log(this.newTicketForm.value);
+      try {
+        const newTicket = await this.ticketsService.create(this.newTicketForm.value);
+        this.newTicketForm.reset();
+        await Swal.fire({
+          title: 'Ticket creado', text: 'Se ha generado un nuevo ticket', icon: 'success'
+        });
+        this.router.navigate(['/tickets', newTicket.id]);
+      } catch (error) {
+        console.log(error);
+      }
+
     }
+  }
+
+  checkError(controlName: string, errorName: string) {
+    return this.newTicketForm.get(controlName)?.hasError(errorName) && this.newTicketForm.get(controlName)?.touched
   }
 
   // TODO: Recuperar los usuarios y colocarlos en un SELECT

@@ -3,6 +3,8 @@ import { inject, Injectable } from '@angular/core';
 import { Ticket } from '../interfaces/ticket.interface';
 import { lastValueFrom } from 'rxjs';
 
+type BodyPost = { title: string, description: string, created_by: number };
+
 @Injectable({
   providedIn: 'root'
 })
@@ -24,5 +26,12 @@ export class TicketsService {
       this.httpClient.get<Ticket>(`${this.baseUrl}/${ticketId}`)
     )
   }
+
+  create(body: BodyPost) {
+    return lastValueFrom(
+      this.httpClient.post<Ticket>(this.baseUrl, body)
+    );
+  }
+
 
 }
