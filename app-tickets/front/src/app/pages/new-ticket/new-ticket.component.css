@@ -1,0 +1,13 @@
+.ng-touched.ng-valid {
+    border-color: green;
+}
+
+.ng-touched.ng-invalid {
+    border-color: tomato;
+}
+
+/* 
+    ng-untouched    ng-touched
+    ng-pristine     ng-dirty
+    ng-invalid      ng-valid
+*/

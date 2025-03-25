@@ -1,0 +1,15 @@
+.open {
+    background-color: lightblue;
+}
+
+.in-progress {
+    background-color: lightgray;
+}
+
+.closed {
+    background-color: lightsalmon;
+}
+
+.resolved {
+    background-color: lightgreen;
+}

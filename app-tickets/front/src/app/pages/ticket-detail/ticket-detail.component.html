@@ -1,0 +1,14 @@
+@if(ticketData){
+
+<div>
+    <h2 [class]="ticketData.status">{{ticketData.title}}</h2>
+    <p>{{ticketData.description}}</p>
+</div>
+
+}@else {
+
+<p>No existe un ticket con ese ID</p>
+
+}
+
+<!-- open, in-progress, resolved, closed -->

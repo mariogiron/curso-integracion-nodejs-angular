@@ -1,0 +1,19 @@
+<div class="row">
+    <div class="col-12 offset-0 col-md-4 offset-md-4">
+        <form [formGroup]="newTicketForm" (ngSubmit)="onSubmit()">
+            <div>
+                <label class="form-label">Título</label>
+                <input class="form-control" type="text" formControlName="title">
+            </div>
+            <div>
+                <label class="form-label">Descripción</label>
+                <input class="form-control" type="text" formControlName="description">
+            </div>
+            <div>
+                <label class="form-label">Creador</label>
+                <input class="form-control" type="text" formControlName="created_by">
+            </div>
+            <input type="submit" value="Enviar" [disabled]="newTicketForm.invalid">
+        </form>
+    </div>
+</div>

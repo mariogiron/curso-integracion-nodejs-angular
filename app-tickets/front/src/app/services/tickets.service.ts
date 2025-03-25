@@ -9,6 +9,7 @@ import { lastValueFrom } from 'rxjs';
 export class TicketsService {
 
   // TODO: Mover al fichero de entorno
+  // https://cursocei.ngrok.io
   private baseUrl: string = 'http://localhost:3000/api/tickets';
   private httpClient = inject(HttpClient);
 
@@ -16,6 +17,12 @@ export class TicketsService {
     return lastValueFrom(
       this.httpClient.get<Ticket[]>(this.baseUrl)
     );
+  }
+
+  getById(ticketId: number) {
+    return lastValueFrom(
+      this.httpClient.get<Ticket>(`${this.baseUrl}/${ticketId}`)
+    )
   }
 
 }

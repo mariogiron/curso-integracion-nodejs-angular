@@ -1,5 +1,5 @@
 @if(ticket){
-<article>
+<article [routerLink]="['/tickets', ticket.id]">
     <h3>{{ ticket.title }}</h3>
     <p>{{ ticket.description }}</p>
     <ul>
