@@ -57,6 +57,4 @@ export class NewTicketComponent {
     return this.newTicketForm.get(controlName)?.hasError(errorName) && this.newTicketForm.get(controlName)?.touched
   }
 
-  // TODO: Recuperar los usuarios y colocarlos en un SELECT
-
 }

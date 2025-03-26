@@ -34,6 +34,21 @@ const create = async (req, res, next) => {
     }
 }
 
-module.exports = {
-    getAll, getById, create
+const edit = async (req, res, next) => {
+    // Body: title, description, created_by
+    const { ticketId } = req.params;
+
+    try {
+        await Ticket.updateById(ticketId, req.body);
+        const result = await Ticket.selectById(ticketId);
+        res.json(result);
+    } catch (error) {
+        next(error);
+    }
 }
+
+module.exports = {
+    getAll, getById, create, edit
+}
+
+// TODO: Recuperar los usuarios con los tickets

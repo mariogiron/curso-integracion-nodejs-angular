@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col-12 offset-0 col-md-4 offset-md-4">
+        <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+                <label class="form-label">Título</label>
+                <input type="text" class="form-control" formControlName="title">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Descripción</label>
+                <input type="text" class="form-control" formControlName="description">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Creador</label>
+                <select class="form-select" formControlName="created_by">
+                    @for (user of arrUsers; track user.id) {
+                    <option [value]="user.id">{{user.name}}</option>
+                    }
+                </select>
+            </div>
+            <input type="submit" value="Enviar">
+        </form>
+    </div>
+</div>

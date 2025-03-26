@@ -32,6 +32,14 @@ const insert = async ({ title, description, created_by }) => {
     return result;
 }
 
+const updateById = async (ticketId, { title, description, created_by }) => {
+    const [result] = await db.query(
+        'update tickets set title = ?, description = ?, created_by = ? where id = ?',
+        [title, description, created_by, ticketId]
+    );
+    return result;
+}
+
 module.exports = {
-    selectAll, selectById, insert
+    selectAll, selectById, insert, updateById
 }

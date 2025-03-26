@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Ticket } from '../interfaces/ticket.interface';
 import { lastValueFrom } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 type BodyPost = { title: string, description: string, created_by: number };
 
@@ -10,9 +11,8 @@ type BodyPost = { title: string, description: string, created_by: number };
 })
 export class TicketsService {
 
-  // TODO: Mover al fichero de entorno
   // https://cursocei.ngrok.io
-  private baseUrl: string = 'http://localhost:3000/api/tickets';
+  private baseUrl: string = `${environment.apiUrl}/tickets`;
   private httpClient = inject(HttpClient);
 
   getAll() {
@@ -33,5 +33,10 @@ export class TicketsService {
     );
   }
 
+  updateById(ticketId: number, body: BodyPost) {
+    return lastValueFrom(
+      this.httpClient.put<Ticket>(`${this.baseUrl}/${ticketId}`, body)
+    )
+  }
 
 }
