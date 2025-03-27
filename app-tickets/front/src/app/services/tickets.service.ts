@@ -39,4 +39,10 @@ export class TicketsService {
     )
   }
 
+  deleteById(ticketId: number) {
+    return lastValueFrom(
+      this.httpClient.delete<Ticket>(`${this.baseUrl}/${ticketId}`)
+    );
+  }
+
 }

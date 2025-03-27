@@ -29,4 +29,10 @@ export class TicketListComponent {
     return this.arrTickets.filter(item => item.status === 'open');
   }
 
+  async onClickDelete($event: number) {
+    await this.ticketsService.deleteById($event);
+    // this.arrTickets = await this.ticketsService.getAll();
+    this.arrTickets = this.arrTickets.filter(ticket => ticket.id !== $event);
+  }
+
 }

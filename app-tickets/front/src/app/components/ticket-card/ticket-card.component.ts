@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Ticket } from '../../interfaces/ticket.interface';
 import { RouterLink } from '@angular/router';
 
@@ -11,5 +11,11 @@ import { RouterLink } from '@angular/router';
 export class TicketCardComponent {
 
   @Input({ required: true }) ticket: Ticket | undefined;
+
+  @Output() clickDelete: EventEmitter<number> = new EventEmitter();
+
+  onClick() {
+    this.clickDelete.emit(this.ticket?.id);
+  }
 
 }

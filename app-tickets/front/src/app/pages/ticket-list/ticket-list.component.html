@@ -1,6 +1,6 @@
 <h2>Lista de tickets</h2>
 <div class="ticket-container">
     @for(tick of arrTickets; track tick.id){
-    <ticket-card [ticket]="tick"></ticket-card>
+    <ticket-card [ticket]="tick" (clickDelete)="onClickDelete($event)"></ticket-card>
     }
 </div>

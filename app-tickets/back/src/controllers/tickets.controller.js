@@ -11,17 +11,18 @@ const getAll = async (req, res, next) => {
 }
 
 const getById = async (req, res, next) => {
-    const { ticketId } = req.params;
+    // const { ticketId } = req.params;
 
-    try {
-        const ticket = await Ticket.selectById(ticketId);
-        if (!ticket) {
-            return res.status(404).json({ message: 'No existe ningún ticket con ese ID' });
-        }
-        res.json(ticket);
-    } catch (error) {
-        next(error);
-    }
+    // try {
+    //     const ticket = await Ticket.selectById(ticketId);
+    //     if (!ticket) {
+    //         return res.status(404).json({ message: 'No existe ningún ticket con ese ID' });
+    //     }
+    //     res.json(ticket);
+    // } catch (error) {
+    //     next(error);
+    // }
+    res.json(req.ticket);
 }
 
 const create = async (req, res, next) => {
@@ -47,8 +48,21 @@ const edit = async (req, res, next) => {
     }
 }
 
+const remove = async (req, res, next) => {
+    const { ticketId } = req.params;
+
+    try {
+        // const ticket = await Ticket.selectById(ticketId);
+        await Ticket.deleteById(ticketId);
+        res.json(req.ticket);
+    } catch (error) {
+        next(error);
+    }
+}
+
 module.exports = {
-    getAll, getById, create, edit
+    getAll, getById, create, edit, remove
 }
 
 // TODO: Recuperar los usuarios con los tickets
+// TODO: Comprobar el ticketId

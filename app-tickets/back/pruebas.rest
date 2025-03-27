@@ -11,7 +11,7 @@ Content-Type: application/json
 }
 
 ### tickets
-GET {{url}}/tickets/
+GET {{url}}/tickets/15
 
 ###
 GET {{url}}/users
@@ -42,3 +42,6 @@ Content-Type: application/json
     "description": "A ver si esto actualiza",
     "created_by": 3
 }
+
+###
+DELETE {{url}}/tickets/3

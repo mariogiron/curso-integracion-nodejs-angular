@@ -4,7 +4,12 @@ const db = require('../config/db');
 
 // Recuperar todos los tickets
 const selectAll = async () => {
-    const [result] = await db.query('select * from tickets');
+    const [result] = await db.query(
+        `select t.id, t.title, t.description, t.status, t.  priority, ucb.name as created_by, uat.name as assigned_to
+        from tickets t
+        join users ucb on t.created_by = ucb.id
+        join users uat on t.assigned_to = uat.id`
+    );
     return result;
 }
 
@@ -19,7 +24,14 @@ const selectAll = async () => {
  * @throws {Error} If there is a database query error.
  */
 const selectById = async (ticketId) => {
-    const [result] = await db.query('select * from tickets where id = ?', [ticketId]);
+    const [result] = await db.query(
+        `select t.id, t.title, t.description, t.status, t.  priority, ucb.name as created_by, uat.name as assigned_to
+        from tickets t
+        join users ucb on t.created_by = ucb.id
+        join users uat on t.assigned_to = uat.id
+        where t.id = ?`,
+        [ticketId]
+    );
     if (result.length === 0) return null;
     return result[0];
 }
@@ -40,6 +52,11 @@ const updateById = async (ticketId, { title, description, created_by }) => {
     return result;
 }
 
+const deleteById = async (ticketId) => {
+    const [result] = await db.query('delete from tickets where id = ?', [ticketId]);
+    return result;
+}
+
 module.exports = {
-    selectAll, selectById, insert, updateById
+    selectAll, selectById, insert, updateById, deleteById
 }

@@ -1,5 +1,10 @@
 @if(ticketData){
 
+<div class="buttons d-flex justify-content-evenly my-4">
+    <button class="btn btn-info" [routerLink]="['/tickets/edit', ticketId]">Editar</button>
+    <button class="btn btn-danger" (click)="onEliminar()">Eliminar</button>
+</div>
+
 <div>
     <h2 [class]="ticketData.status">{{ticketData.title}}</h2>
     <p>{{ticketData.description}}</p>

@@ -1,6 +1,6 @@
 @if(ticket){
-<article [routerLink]="['/tickets', ticket.id]">
-    <h3>{{ ticket.title }}</h3>
+<article>
+    <h3 [routerLink]="['/tickets', ticket.id]">{{ ticket.title }}</h3>
     <p>{{ ticket.description }}</p>
     <ul>
         <li>Creado por: {{ ticket.created_by }}</li>
@@ -8,5 +8,6 @@
         <li>Estado: {{ ticket.status }}</li>
         <li>Prioridad: {{ ticket.priority }}</li>
     </ul>
+    <button class="btn btn-danger" (click)="onClick()">Eliminar</button>
 </article>
 }

@@ -2,8 +2,8 @@ export interface Ticket {
     id: number;
     title: string;
     description: string;
-    created_by: number;
-    assigned_to: number;
+    created_by: string;
+    assigned_to: string;
     status: string;
     priority: string;
 }
