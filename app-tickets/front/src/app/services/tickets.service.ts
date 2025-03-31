@@ -15,9 +15,15 @@ export class TicketsService {
   private baseUrl: string = `${environment.apiUrl}/tickets`;
   private httpClient = inject(HttpClient);
 
-  getAll() {
+  getAllWithoutAssigned() {
     return lastValueFrom(
-      this.httpClient.get<Ticket[]>(this.baseUrl)
+      this.httpClient.get<Ticket[]>(this.baseUrl + "/not-assigned")
+    );
+  }
+
+  getAllWithAssigned() {
+    return lastValueFrom(
+      this.httpClient.get<Ticket[]>(this.baseUrl + "/assigned")
     );
   }
 

@@ -11,16 +11,10 @@ Content-Type: application/json
 }
 
 ### tickets
-GET {{url}}/tickets/15
+GET {{url}}/tickets/
 
 ###
 GET {{url}}/users
-
-
-
-
-
-
 
 
 ###
@@ -28,13 +22,13 @@ POST {{url}}/tickets
 Content-Type: application/json
 
 {
-    "title": "Tarea super urgente",
-    "description": "Cambiar los botones del formulario",
-    "created_by": 2
+    "title": "Prueba para ver la inserción 222",
+    "description": "Esto esta funcionando o no?",
+    "created_by": 5
 }
 
 ###
-PUT {{url}}/tickets/2
+PUT {{url}}/tickets/5
 Content-Type: application/json
 
 { 
@@ -44,4 +38,4 @@ Content-Type: application/json
 }
 
 ###
-DELETE {{url}}/tickets/3
+DELETE {{url}}/tickets/5

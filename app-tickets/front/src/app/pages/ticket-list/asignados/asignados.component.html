@@ -1,0 +1,6 @@
+<h4 class="text-center">Ticket asignados</h4>
+<div class="ticket-container">
+  @for(tick of arrTickets; track tick.id){
+  <ticket-card [ticket]="tick" (clickDelete)="onClickDelete($event)"></ticket-card>
+  }
+</div>

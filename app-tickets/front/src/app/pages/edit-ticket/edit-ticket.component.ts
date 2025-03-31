@@ -27,7 +27,8 @@ export class EditTicketComponent {
     this.editForm = new FormGroup({
       title: new FormControl(),
       description: new FormControl(),
-      created_by: new FormControl()
+      created_by: new FormControl(),
+      assigned_to: new FormControl()
     });
   }
 
@@ -52,6 +53,7 @@ export class EditTicketComponent {
   }
 
   async onSubmit() {
+
     try {
       const ticket = await this.ticketsService.updateById(Number(this.ticketId), this.editForm.value);
       await Swal.fire({

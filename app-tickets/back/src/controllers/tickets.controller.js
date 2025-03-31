@@ -1,8 +1,28 @@
 const Ticket = require('../models/tickets.model');
 
-const getAll = async (req, res, next) => {
+/* const getAll = async (req, res, next) => {
     try {
         const tickets = await Ticket.selectAll();
+        res.json(tickets);
+        // res.status(404).json({ message: 'Error de pacotilla' });
+    } catch (error) {
+        next(error);
+    }
+} */
+
+const getAllAssigned = async (req, res, next) => {
+    try {
+        const tickets = await Ticket.selectAllAssigned();
+        res.json(tickets);
+        // res.status(404).json({ message: 'Error de pacotilla' });
+    } catch (error) {
+        next(error);
+    }
+}
+
+const getAllNotAssigned = async (req, res, next) => {
+    try {
+        const tickets = await Ticket.selectAllNotAssigned();
         res.json(tickets);
         // res.status(404).json({ message: 'Error de pacotilla' });
     } catch (error) {
@@ -61,8 +81,7 @@ const remove = async (req, res, next) => {
 }
 
 module.exports = {
-    getAll, getById, create, edit, remove
+    getAllAssigned, getAllNotAssigned, getById, create, edit, remove
 }
 
-// TODO: Recuperar los usuarios con los tickets
-// TODO: Comprobar el ticketId
+

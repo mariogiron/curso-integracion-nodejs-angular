@@ -1,9 +1,10 @@
 const router = require('express').Router();
 
-const { getAll, create, getById, edit, remove } = require('../../controllers/tickets.controller');
+const { getAllAssigned, getAllNotAssigned, create, getById, edit, remove } = require('../../controllers/tickets.controller');
 const { checkTicketId } = require('../../middlewares/tickets.middleware');
 
-router.get('/', getAll);
+router.get('/assigned', getAllAssigned);
+router.get('/not-assigned', getAllNotAssigned);
 router.get('/:ticketId', checkTicketId, getById);
 
 router.post('/', create);

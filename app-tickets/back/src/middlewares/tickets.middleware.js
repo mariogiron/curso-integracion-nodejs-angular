@@ -1,7 +1,8 @@
 const Ticket = require('../models/tickets.model');
 
 const checkTicketId = async (req, res, next) => {
-    const { ticketId } = req.params;
+    //siempre que recibimos paremetros de ruta esta parametro es de tipo string 
+    const ticketId = parseInt(req.params.ticketId);
 
     if (isNaN(ticketId)) {
         return res.status(400).json({ message: 'El ID debe ser un número' });

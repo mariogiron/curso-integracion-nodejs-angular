@@ -40,7 +40,9 @@ export class NewTicketComponent {
     this.newTicketForm.markAllAsTouched();
     if (this.newTicketForm.valid) {
       try {
+
         const newTicket = await this.ticketsService.create(this.newTicketForm.value);
+
         this.newTicketForm.reset();
         await Swal.fire({
           title: 'Ticket creado', text: 'Se ha generado un nuevo ticket', icon: 'success'

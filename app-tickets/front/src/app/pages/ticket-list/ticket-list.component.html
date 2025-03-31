@@ -1,6 +1,9 @@
 <h2>Lista de tickets</h2>
-<div class="ticket-container">
-    @for(tick of arrTickets; track tick.id){
-    <ticket-card [ticket]="tick" (clickDelete)="onClickDelete($event)"></ticket-card>
-    }
+<div class="my-2">
+  <button class="btn btn-primary mx-2" [routerLink]="['/tickets', 'asignados']">Ticket asignados</button>
+  <button class="btn btn-primary mx-2" [routerLink]="['/tickets', 'sin-asignar']">Ticket no asignados</button>
 </div>
+<section>
+  <router-outlet></router-outlet>
+</section>
+<hr>

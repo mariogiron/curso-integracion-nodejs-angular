@@ -2,13 +2,29 @@ const db = require('../config/db');
 
 // Funciones que lancen queries sobre la tabla tickets
 
+/*
+query para seleccionar solo aquellos ticket que tiene personal asigned
+"select t.id, t.title, t.description, t.status, t.  priority, ucb.name as created_by, uat.name as assigned_to
+        from tickets t
+        join users ucb on t.created_by = ucb.id
+        join users uat on t.assigned_to = uat.id"
+*/
+
 // Recuperar todos los tickets
-const selectAll = async () => {
+const selectAllAssigned = async () => {
     const [result] = await db.query(
         `select t.id, t.title, t.description, t.status, t.  priority, ucb.name as created_by, uat.name as assigned_to
         from tickets t
         join users ucb on t.created_by = ucb.id
         join users uat on t.assigned_to = uat.id`
+    );
+    return result;
+}
+
+const selectAllNotAssigned = async () => {
+    const [result] = await db.query(
+        `SELECT t.id, t.title, t.description, t.status, t.priority, ucb.name as created_by, 
+        uat.id as assigned_to FROM tickets t JOIN users ucb on t.created_by = ucb.id LEFT JOIN users uat on t.assigned_to = uat.id WHERE t.assigned_to is null`
     );
     return result;
 }
@@ -28,7 +44,7 @@ const selectById = async (ticketId) => {
         `select t.id, t.title, t.description, t.status, t.  priority, ucb.name as created_by, uat.name as assigned_to
         from tickets t
         join users ucb on t.created_by = ucb.id
-        join users uat on t.assigned_to = uat.id
+        left join users uat on t.assigned_to = uat.id
         where t.id = ?`,
         [ticketId]
     );
@@ -44,10 +60,10 @@ const insert = async ({ title, description, created_by }) => {
     return result;
 }
 
-const updateById = async (ticketId, { title, description, created_by }) => {
+const updateById = async (ticketId, { title, description, created_by, assigned_to }) => {
     const [result] = await db.query(
-        'update tickets set title = ?, description = ?, created_by = ? where id = ?',
-        [title, description, created_by, ticketId]
+        'update tickets set title = ?, description = ?, created_by = ?, assigned_to=? where id = ?',
+        [title, description, created_by, assigned_to, ticketId]
     );
     return result;
 }
@@ -58,5 +74,5 @@ const deleteById = async (ticketId) => {
 }
 
 module.exports = {
-    selectAll, selectById, insert, updateById, deleteById
+    selectAllAssigned, selectAllNotAssigned, selectById, insert, updateById, deleteById
 }

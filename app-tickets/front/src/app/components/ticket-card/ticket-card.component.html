@@ -1,13 +1,17 @@
 @if(ticket){
 <article>
-    <h3 [routerLink]="['/tickets', ticket.id]">{{ ticket.title }}</h3>
-    <p>{{ ticket.description }}</p>
-    <ul>
-        <li>Creado por: {{ ticket.created_by }}</li>
-        <li>Asignado a: {{ ticket.assigned_to }}</li>
-        <li>Estado: {{ ticket.status }}</li>
-        <li>Prioridad: {{ ticket.priority }}</li>
-    </ul>
-    <button class="btn btn-danger" (click)="onClick()">Eliminar</button>
+  <h3 [routerLink]="['/tickets', ticket.id]">{{ ticket.title }}</h3>
+  <p>{{ ticket.description }}</p>
+  <ul>
+    <li>Creado por: {{ ticket.created_by }}</li>
+    @if(ticket.assigned_to){
+    <li>Asignado a: <span>{{ ticket.assigned_to }}</span></li>
+    }@else{
+    <li class="text-danger">Sin Asignar</li>
+    }
+    <li>Estado: {{ ticket.status }}</li>
+    <li>Prioridad: {{ ticket.priority }}</li>
+  </ul>
+  <button class="btn btn-danger" (click)="onClick()">Eliminar</button>
 </article>
 }
