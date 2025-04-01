@@ -1,1 +1,38 @@
-<p>register works!</p>
+<header class="bg-secondary border-5 border-bottom border-danger p-5 shadow">
+  <h1 class="text-center text-white">Bienvenido a tu aplicacion de gestion tickets</h1>
+</header>
+<section class="container w-50">
+  <form [formGroup]="registerForm" (ngSubmit)="getDataForm()">
+    <div class="my-3">
+      <label for="name" class="form-label">Nombre</label>
+      <input class="form-control shadow" type="text" id="name" placeholder="introduce tu nombre" formControlName="name">
+    </div>
+    <div class="my-3">
+      <label for="email" class="form-label">Email</label>
+      <input class="form-control shadow" type="email" id="email" placeholder="introduce tu email"
+        formControlName="email">
+      @if(checkError('email', 'required')){
+      <p class="text-danger">Campo Obligatorio</p>
+      }
+      @if(checkError('email', 'email')){
+      <p class="text-danger">El email debe ser valido</p>
+      }
+
+    </div>
+    <div class="my-3">
+      <label for="password" class="form-label">Password</label>
+      <input class="form-control shadow" type="password" id="password" placeholder="introduce tu password"
+        formControlName="password">
+      @if(checkError('password', 'required')){
+      <p class="text-danger">Campo Obligatorio</p>
+      }
+      @if(checkError('password', 'minlength')){
+      <p class="text-danger">Longitud minima de 5 caracteres</p>
+      }
+    </div>
+    <div class="my-3">
+      <input type="submit" value="Registrar" class="btn btn-danger" [disabled]="!registerForm.valid">
+    </div>
+  </form>
+  <p class="text-center">Si tienes usuario haz login en: <a class="text-secondary" [routerLink]="['/login']">aquí</a>
+</section>

@@ -17,10 +17,10 @@ const selectByEmail = async (email) => {
     return result[0]
 }
 
-const insert = async ({ name, email, password, role }) => {
+const insert = async ({ name, email, password }) => {
     const [result] = await db.query(
-        'insert into users (name, email, password, role) values (?, ?, ?, ?)',
-        [name, email, password, role]
+        'insert into users (name, email, password) values (?, ?, ?)',
+        [name, email, password]
     );
     return result;
 }

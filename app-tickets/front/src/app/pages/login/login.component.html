@@ -1,1 +1,21 @@
-<p>login works!</p>
+<header class="bg-secondary border-5 border-bottom border-danger p-5 shadow">
+  <h1 class="text-center text-white">Bienvenido a tu aplicacion de gestion tickets</h1>
+</header>
+<section class="container w-50">
+  <form action="">
+    <div class="my-3">
+      <label for="" class="form-label">Email</label>
+      <input type="text" class="form-control shadow" id="" placeholder="introduce el email">
+    </div>
+    <div class="my-3">
+      <label for="" class="form-label">Password</label>
+      <input type="text" class="form-control shadow" id="" placeholder="introduce el email">
+    </div>
+    <div class="my-3">
+      <button class="btn btn-danger">Login</button>
+    </div>
+    <p class="text-center">Si no tienes usuario registrar <a class="text-secondary"
+        [routerLink]="['/register']">aquí</a>
+    </p>
+  </form>
+</section>
