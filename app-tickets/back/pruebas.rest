@@ -4,14 +4,17 @@ POST {{url}}/users
 Content-Type: application/json
 
 {
-    "name": "mario",
-    "email": "mario@gmail.com",
-    "password": "123456",
+    "name": "juanan",
+    "email": "juanan@gmail.com",
+    "password": "12345",
     "role": "admin"
 }
 
-### tickets
-GET {{url}}/tickets/
+### tickets no asignados
+GET {{url}}/tickets/not-assigned
+
+### tickets asignados
+GET {{url}}/tickets/assigned
 
 ###
 GET {{url}}/users
@@ -39,3 +42,12 @@ Content-Type: application/json
 
 ###
 DELETE {{url}}/tickets/5
+
+###
+POST {{url}}/users/login
+Content-Type: application/json
+
+{
+    "email": "juanan@gmail.com",
+    "password": "12345"
+}

@@ -6,10 +6,11 @@ import Swal from 'sweetalert2';
 import { TicketsService } from '../../services/tickets.service';
 import { UsersService } from '../../services/users.service';
 import { User } from '../../interfaces/user.interface';
+import { NavBarComponent } from '../../components/nav-bar/nav-bar.component';
 
 @Component({
   selector: 'app-new-ticket',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, NavBarComponent],
   templateUrl: './new-ticket.component.html',
   styleUrl: './new-ticket.component.css'
 })

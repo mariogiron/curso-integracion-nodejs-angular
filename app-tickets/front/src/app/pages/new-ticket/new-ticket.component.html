@@ -1,42 +1,48 @@
-<div class="row">
+<header>
+  <app-nav-bar></app-nav-bar>
+  <h1 class="text-center my-5">App Gestión Tickets</h1>
+</header>
+<section class="container">
+  <div class="row">
     <div class="col-12 offset-0 col-md-4 offset-md-4">
-        <form [formGroup]="newTicketForm" (ngSubmit)="onSubmit()">
-            <div class="mb-4">
-                <label class="form-label">Título</label>
-                <input class="form-control" type="text" formControlName="title">
+      <form [formGroup]="newTicketForm" (ngSubmit)="onSubmit()">
+        <div class="mb-4">
+          <label class="form-label">Título</label>
+          <input class="form-control" type="text" formControlName="title">
 
-                @if(checkError('title', 'required')){
-                <small class="error">
-                    El campo título es requerido
-                </small>
-                }
+          @if(checkError('title', 'required')){
+          <small class="error">
+            El campo título es requerido
+          </small>
+          }
 
-            </div>
-            <div class="mb-4">
-                <label class="form-label">Descripción</label>
-                <input class="form-control" type="text" formControlName="description">
-                @if(checkError('description', 'required')){
-                <small class="error">
-                    El campo descripción es requerido
-                </small>
-                }
-            </div>
-            <div class="mb-4">
-                <label class="form-label">Creador</label>
+        </div>
+        <div class="mb-4">
+          <label class="form-label">Descripción</label>
+          <input class="form-control" type="text" formControlName="description">
+          @if(checkError('description', 'required')){
+          <small class="error">
+            El campo descripción es requerido
+          </small>
+          }
+        </div>
+        <div class="mb-4">
+          <label class="form-label">Creador</label>
 
-                <select class="form-select" formControlName="created_by">
-                    @for (user of arrUsers; track user.id) {
-                    <option [value]="user.id">{{user.name}}</option>
-                    }
-                </select>
+          <select class="form-select" formControlName="created_by">
+            @for (user of arrUsers; track user.id) {
+            <option [value]="user.id">{{user.name}}</option>
+            }
+          </select>
 
-                @if(checkError('created_by', 'required')){
-                <small class="error">
-                    El campo creador es requerido
-                </small>
-                }
-            </div>
-            <input type="submit" value="Enviar">
-        </form>
+          @if(checkError('created_by', 'required')){
+          <small class="error">
+            El campo creador es requerido
+          </small>
+          }
+        </div>
+        <input type="submit" value="Enviar" class="btn btn-primary">
+      </form>
     </div>
-</div>
+  </div>
+</section>

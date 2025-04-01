@@ -3,10 +3,11 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { TicketsService } from '../../services/tickets.service';
 import { Ticket } from '../../interfaces/ticket.interface';
 import Swal from 'sweetalert2';
+import { NavBarComponent } from '../../components/nav-bar/nav-bar.component';
 
 @Component({
   selector: 'app-ticket-detail',
-  imports: [RouterLink],
+  imports: [RouterLink, NavBarComponent],
   templateUrl: './ticket-detail.component.html',
   styleUrl: './ticket-detail.component.css'
 })

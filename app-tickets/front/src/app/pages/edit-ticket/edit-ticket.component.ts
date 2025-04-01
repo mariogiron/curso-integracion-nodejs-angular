@@ -5,10 +5,11 @@ import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { UsersService } from '../../services/users.service';
 import { User } from '../../interfaces/user.interface';
+import { NavBarComponent } from '../../components/nav-bar/nav-bar.component';
 
 @Component({
   selector: 'app-edit-ticket',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, NavBarComponent],
   templateUrl: './edit-ticket.component.html',
   styleUrl: './edit-ticket.component.css'
 })
@@ -38,7 +39,7 @@ export class EditTicketComponent {
 
     // Recuperar los datos del ticket
     const ticket = await this.ticketsService.getById(Number(this.ticketId));
-
+    console.log(ticket)
     // Rellenar los campos del formulario con esos datos
     // this.editForm.get('title')?.setValue(ticket.title);
     // this.editForm.get('description')?.setValue(ticket.description);

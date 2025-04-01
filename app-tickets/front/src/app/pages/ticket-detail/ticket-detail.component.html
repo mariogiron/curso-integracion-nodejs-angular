@@ -1,19 +1,25 @@
-@if(ticketData){
-
-<div class="buttons d-flex justify-content-evenly my-4">
-    <button class="btn btn-info" [routerLink]="['/tickets/edit', ticketId]">Editar</button>
-    <button class="btn btn-danger" (click)="onEliminar()">Eliminar</button>
-</div>
-
-<div>
-    <h2 [class]="ticketData.status">{{ticketData.title}}</h2>
+<header>
+  <app-nav-bar></app-nav-bar>
+  <h1 class="text-center my-5">App Gestión Tickets</h1>
+</header>
+<section class="container">
+  @if(ticketData){
+  <div class="card p-2 shadow">
+    <h2 [class]="ticketData.status" class="p-2 rounded">{{ticketData.title}}</h2>
     <p>{{ticketData.description}}</p>
-</div>
+    <p>Estado: <strong>{{ticketData.status}}</strong></p>
 
-}@else {
+    <div class="buttons d-flex gap-3 my-4">
+      <button class="btn btn-info" [routerLink]="['/tickets/edit', ticketId]">Editar</button>
+      <button class="btn btn-danger" (click)="onEliminar()">Eliminar</button>
+    </div>
+  </div>
 
-<p>No existe un ticket con ese ID</p>
+  }@else {
 
-}
+  <p>No existe un ticket con ese ID</p>
 
-<!-- open, in-progress, resolved, closed -->
+  }
+
+  <!-- open, in-progress, resolved, closed -->
+</section>

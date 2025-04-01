@@ -11,6 +11,12 @@ const selectById = async (userId) => {
     return result[0];
 }
 
+const selectByEmail = async (email) => {
+    const [result] = await db.query('SELECT * FROM users WHERE email= ?', [email])
+    if (result.length === 0) return null;
+    return result[0]
+}
+
 const insert = async ({ name, email, password, role }) => {
     const [result] = await db.query(
         'insert into users (name, email, password, role) values (?, ?, ?, ?)',
@@ -22,5 +28,6 @@ const insert = async ({ name, email, password, role }) => {
 module.exports = {
     insert,
     selectById,
-    selectAll
+    selectAll,
+    selectByEmail
 }

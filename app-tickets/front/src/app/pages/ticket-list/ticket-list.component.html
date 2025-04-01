@@ -1,9 +1,15 @@
-<h2>Lista de tickets</h2>
-<div class="my-2">
-  <button class="btn btn-primary mx-2" [routerLink]="['/tickets', 'asignados']">Ticket asignados</button>
-  <button class="btn btn-primary mx-2" [routerLink]="['/tickets', 'sin-asignar']">Ticket no asignados</button>
-</div>
-<section>
-  <router-outlet></router-outlet>
-</section>
-<hr>
+<header>
+  <app-nav-bar></app-nav-bar>
+  <h1 class="text-center my-5">App Gestión Tickets</h1>
+</header>
+<main class="container">
+  <h2>Lista de tickets</h2>
+  <div class="my-2">
+    <button class="btn btn-primary mx-2" [routerLink]="['/tickets', 'asignados']">Ticket asignados</button>
+    <button class="btn btn-primary mx-2" [routerLink]="['/tickets', 'sin-asignar']">Ticket no asignados</button>
+  </div>
+  <section>
+    <router-outlet></router-outlet>
+  </section>
+  <hr>
+</main>
