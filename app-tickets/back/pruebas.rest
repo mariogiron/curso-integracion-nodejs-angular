@@ -15,6 +15,8 @@ GET {{url}}/tickets/not-assigned
 
 ### tickets asignados
 GET {{url}}/tickets/assigned
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE4LCJ1c2VyUm9sIjoidXNlciIsImV4cCI6MTc0MzYxNDQ2MCwiaWF0IjoxNzQzNjE0NDAwfQ.GROsjNcY1NO2Qxe7YbKYjy6EXqYA24ovjvohRiUGhu8
 
 ###
 GET {{url}}/users

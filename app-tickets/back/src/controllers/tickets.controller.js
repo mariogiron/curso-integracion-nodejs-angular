@@ -11,6 +11,7 @@ const Ticket = require('../models/tickets.model');
 } */
 
 const getAllAssigned = async (req, res, next) => {
+    console.log(req.user)
     try {
         const tickets = await Ticket.selectAllAssigned();
         res.json(tickets);

@@ -10,9 +10,8 @@ const createToken = (usuario) => {
     const obj = {
         userId: usuario.id,
         userRol: usuario.role,
-        exp: dayjs().add(5, 'days').unix()
+        exp: dayjs().add(1, 'days').unix()
     }
     return jwt.sign(obj, process.env.SECRETKEY)
 }
-
 module.exports = { createToken }

@@ -2,14 +2,16 @@
   <h1 class="text-center text-white">Bienvenido a tu aplicacion de gestion tickets</h1>
 </header>
 <section class="container w-50">
-  <form action="">
+  <form [formGroup]="loginForm" (ngSubmit)="getDataLogin()">
     <div class="my-3">
-      <label for="" class="form-label">Email</label>
-      <input type="text" class="form-control shadow" id="" placeholder="introduce el email">
+      <label for="email" class="form-label">Email</label>
+      <input type="text" class="form-control shadow" id="email" placeholder="introduce el email"
+        formControlName="email">
     </div>
     <div class="my-3">
-      <label for="" class="form-label">Password</label>
-      <input type="text" class="form-control shadow" id="" placeholder="introduce el email">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" class="form-control shadow" id="password" placeholder="introduce el email"
+        formControlName="password">
     </div>
     <div class="my-3">
       <button class="btn btn-danger">Login</button>

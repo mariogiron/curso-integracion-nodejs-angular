@@ -8,6 +8,7 @@ import { SinAsignarComponent } from './pages/ticket-list/sin-asignar/sin-asignar
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { loginGuard } from './guards/login.guard';
 
 export const routes: Routes = [
   { path: "", pathMatch: 'full', redirectTo: 'home' },
@@ -15,16 +16,17 @@ export const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
   {
-    path: 'tickets', component: TicketListComponent, children: [
+    path: 'tickets', component: TicketListComponent, canActivate: [loginGuard], children: [
       { path: "", pathMatch: 'full', redirectTo: 'sin-asignar' },
       { path: 'asignados', component: AsignadosComponent },
       { path: 'sin-asignar', component: SinAsignarComponent }
     ]
   },
-  { path: 'tickets/new', component: NewTicketComponent },
-  { path: 'tickets/:ticketId', component: TicketDetailComponent },
-  { path: 'tickets/edit/:ticketId', component: EditTicketComponent }
+  { path: 'tickets/new', component: NewTicketComponent, canActivate: [loginGuard] },
+  { path: 'tickets/:ticketId', component: TicketDetailComponent, canActivate: [loginGuard] },
+  { path: 'tickets/edit/:ticketId', component: EditTicketComponent, canActivate: [loginGuard] }
 ];
+// no permitir el acceso a ciertas rutas necesitamos lo que en angular se llama GUARDS - clausas de guarda.
 
 //  /tickets/12
 

@@ -29,17 +29,20 @@ const register = async (req, res, next) => {
 
 const login = async (req, res, next) => {
     const { email, password } = req.body;
+    console.log(req.body)
     //¿Existe este email en la bbdd?
     const usuario = await User.selectByEmail(email);
     if (!usuario) {
         //devolveré un error de autentificación
         res.status(403).json({ message: 'Error en email o password' })
+        return false;
     }
     //Coinciden los password? comparar el password hash con el almacenado en la BBDD
     const iguales = await bcrypt.compare(password, usuario.password)
     if (!iguales) {
         //devolveré un error de autentificación
         res.status(403).json({ message: 'Error en email o password' })
+        return false;
     }
 
     res.json({

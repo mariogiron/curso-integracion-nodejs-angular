@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UsersService } from '../../services/users.service';
 import { Router, RouterLink } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -28,6 +29,12 @@ export class RegisterComponent {
     let response = await this.usersServices.register(this.registerForm.value)
     console.log(response)
     if (response.id) {
+      Swal.fire({
+        title: 'Exito!',
+        text: 'Usuario registrado correctamente',
+        icon: 'success',
+        confirmButtonText: 'Aceptar'
+      })
       this.router.navigate(['/login'])
     }
   }

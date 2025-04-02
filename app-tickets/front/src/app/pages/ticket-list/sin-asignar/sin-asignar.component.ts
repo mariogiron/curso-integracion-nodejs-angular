@@ -22,6 +22,7 @@ export class SinAsignarComponent {
       this.arrTickets = await this.ticketsService.getAllWithoutAssigned();
     } catch ({ error }: any) {
       console.log(error.message);
+      console.log(error.code)
     }
   }
 
