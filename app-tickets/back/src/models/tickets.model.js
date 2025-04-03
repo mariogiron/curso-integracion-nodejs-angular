@@ -60,10 +60,11 @@ const insert = async ({ title, description, created_by }) => {
     return result;
 }
 
-const updateById = async (ticketId, { title, description, created_by, assigned_to }) => {
+const updateById = async (ticketId, { title, description, created_by, assigned_to, status, priority }) => {
+    console.log(ticketId)
     const [result] = await db.query(
-        'update tickets set title = ?, description = ?, created_by = ?, assigned_to=? where id = ?',
-        [title, description, created_by, assigned_to, ticketId]
+        'update tickets set title = ?, description = ?, created_by = ?, assigned_to = ?, status=?, priority=? where id = ?',
+        [title, description, Number(created_by), Number(assigned_to), status, priority, ticketId]
     );
     return result;
 }
@@ -73,6 +74,11 @@ const deleteById = async (ticketId) => {
     return result;
 }
 
+const selectAllByUserId = async (userId) => {
+    const [result] = await db.query("SELECT tickets.*, ucb.name as created_by, uat.name as assigned_to FROM tickets, users as uat, users as ucb WHERE tickets.assigned_to = uat.id AND tickets.created_by = ucb.id AND assigned_to = ?", [userId])
+    return result
+}
+
 module.exports = {
-    selectAllAssigned, selectAllNotAssigned, selectById, insert, updateById, deleteById
+    selectAllAssigned, selectAllNotAssigned, selectById, insert, updateById, deleteById, selectAllByUserId
 }

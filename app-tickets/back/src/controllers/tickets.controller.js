@@ -61,7 +61,8 @@ const edit = async (req, res, next) => {
     const { ticketId } = req.params;
 
     try {
-        await Ticket.updateById(ticketId, req.body);
+        const result2 = await Ticket.updateById(ticketId, req.body);
+        console.log(result2)
         const result = await Ticket.selectById(ticketId);
         res.json(result);
     } catch (error) {
@@ -81,8 +82,19 @@ const remove = async (req, res, next) => {
     }
 }
 
+const getAllByUserId = async (req, res, next) => {
+    const { userId } = req.params;
+
+    try {
+        const tickets = await Ticket.selectAllByUserId(userId);
+        res.json(tickets);
+    } catch (error) {
+        next(error);
+    }
+}
+
 module.exports = {
-    getAllAssigned, getAllNotAssigned, getById, create, edit, remove
+    getAllAssigned, getAllNotAssigned, getById, create, edit, remove, getAllByUserId
 }
 
 

@@ -51,7 +51,23 @@ const checkToken = async (req, res, next) => {
     next()
 }
 
+const checkAdmin = async (req, res, next) => {
+    if (req.user.role !== 'admin') {
+        return res.status(401).json({ message: "Debes ser admin" })
+    }
+    next()
+}
+
+const checkAdminEditor = async (req, res, next) => {
+    if (req.user.role !== 'admin' && req.user.role !== 'editor') {
+        return res.status(401).json({ message: "Debes ser o bien administrador o editor para poder realizar esta petición" })
+    }
+    next()
+}
+
 module.exports = {
     checkTicketId,
-    checkToken
+    checkToken,
+    checkAdmin,
+    checkAdminEditor
 }

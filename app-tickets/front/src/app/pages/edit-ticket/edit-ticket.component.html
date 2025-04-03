@@ -30,6 +30,25 @@
             }
           </select>
         </div>
+        <div class="mb-3">
+          <label class="form-label">Prioridad</label>
+          <select class="form-select" formControlName="priority">
+            <option value="">Selecciona una opción</option>
+            <option value="low">Baja</option>
+            <option value="medium">Media</option>
+            <option value="high">Alta</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Estado</label>
+          <select class="form-select" formControlName="status">
+            <option value="">Selecciona una opción</option>
+            <option value="open">Abierta</option>
+            <option value="in-progress">En progreso</option>
+            <option value="resolved">Resuelta</option>
+            <option value="closed">Cerrada</option>
+          </select>
+        </div>
         <input type="submit" value="Enviar" class="btn btn-info">
       </form>
     </div>

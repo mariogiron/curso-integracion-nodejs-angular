@@ -29,7 +29,9 @@ export class EditTicketComponent {
       title: new FormControl(),
       description: new FormControl(),
       created_by: new FormControl(),
-      assigned_to: new FormControl()
+      assigned_to: new FormControl(),
+      status: new FormControl(),
+      priority: new FormControl()
     });
   }
 
@@ -39,7 +41,6 @@ export class EditTicketComponent {
 
     // Recuperar los datos del ticket
     const ticket = await this.ticketsService.getById(Number(this.ticketId));
-    console.log(ticket)
     // Rellenar los campos del formulario con esos datos
     // this.editForm.get('title')?.setValue(ticket.title);
     // this.editForm.get('description')?.setValue(ticket.description);
@@ -54,7 +55,6 @@ export class EditTicketComponent {
   }
 
   async onSubmit() {
-
     try {
       const ticket = await this.ticketsService.updateById(Number(this.ticketId), this.editForm.value);
       await Swal.fire({

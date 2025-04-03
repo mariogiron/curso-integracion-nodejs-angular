@@ -4,7 +4,7 @@ import { Ticket } from '../interfaces/ticket.interface';
 import { lastValueFrom } from 'rxjs';
 import { environment } from '../../environments/environment';
 
-type BodyPost = { title: string, description: string, created_by: number };
+type BodyPost = { title: string, description: string, created_by: number, assigned_to: number, status: string, priority: string };
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +27,12 @@ export class TicketsService {
     );
   }
 
+  getTicketsById(userid: number) {
+    return lastValueFrom(
+      this.httpClient.get<Ticket[]>(`${this.baseUrl}/user/${userid}`)
+    )
+  }
+
   getById(ticketId: number) {
     return lastValueFrom(
       this.httpClient.get<Ticket>(`${this.baseUrl}/${ticketId}`)
@@ -40,6 +46,7 @@ export class TicketsService {
   }
 
   updateById(ticketId: number, body: BodyPost) {
+    console.log(body)
     return lastValueFrom(
       this.httpClient.put<Ticket>(`${this.baseUrl}/${ticketId}`, body)
     )

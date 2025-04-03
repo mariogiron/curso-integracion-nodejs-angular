@@ -22,6 +22,7 @@ export class NewTicketComponent {
   ticketsService = inject(TicketsService);
   usersService = inject(UsersService);
   router = inject(Router);
+  userLogged: any;
 
   constructor() {
     this.newTicketForm = new FormGroup({
@@ -35,6 +36,7 @@ export class NewTicketComponent {
 
   async ngOnInit() {
     this.arrUsers = await this.usersService.getAll();
+    this.userLogged = this.usersService.getUserRolFromToken();
   }
 
   async onSubmit() {
@@ -48,7 +50,11 @@ export class NewTicketComponent {
         await Swal.fire({
           title: 'Ticket creado', text: 'Se ha generado un nuevo ticket', icon: 'success'
         });
-        this.router.navigate(['/tickets', newTicket.id]);
+        if (this.userLogged.userRol !== 'user') {
+          this.router.navigate(['/tickets', newTicket.id]);
+        } else {
+          this.router.navigate(['/tickets'])
+        }
       } catch (error) {
         console.log(error);
       }

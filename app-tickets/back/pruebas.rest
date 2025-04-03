@@ -12,11 +12,19 @@ Content-Type: application/json
 
 ### tickets no asignados
 GET {{url}}/tickets/not-assigned
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE4LCJ1c2VyUm9sIjoiZWRpdG9yIiwiZXhwIjoxNzQzNzgwOTQ2LCJpYXQiOjE3NDM2OTQ1NDZ9.nHK1XC6e4eJCDZL9BAqPh60sROMQOc5zPiQeQJvzKXk
+
 
 ### tickets asignados
 GET {{url}}/tickets/assigned
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE4LCJ1c2VyUm9sIjoidXNlciIsImV4cCI6MTc0MzYxNDQ2MCwiaWF0IjoxNzQzNjE0NDAwfQ.GROsjNcY1NO2Qxe7YbKYjy6EXqYA24ovjvohRiUGhu8
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE4LCJ1c2VyUm9sIjoidXNlciIsImV4cCI6MTc0Mzc4MTE1MiwiaWF0IjoxNzQzNjk0NzUyfQ.xywUYVv57sLYBbu6P6LwmjakUT786H5tUFic3bGJqdg
+
+### tickets con id concreto
+GET {{url}}/tickets/51
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE4LCJ1c2VyUm9sIjoidXNlciIsImV4cCI6MTc0Mzc4MTE1MiwiaWF0IjoxNzQzNjk0NzUyfQ.xywUYVv57sLYBbu6P6LwmjakUT786H5tUFic3bGJqdg
 
 ###
 GET {{url}}/users
@@ -25,25 +33,30 @@ GET {{url}}/users
 ###
 POST {{url}}/tickets
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE4LCJ1c2VyUm9sIjoidXNlciIsImV4cCI6MTc0Mzc4MTE1MiwiaWF0IjoxNzQzNjk0NzUyfQ.xywUYVv57sLYBbu6P6LwmjakUT786H5tUFic3bGJqdg
 
 {
-    "title": "Prueba para ver la inserción 222",
+    "title": "Prueba para ver la inserción 211345",
     "description": "Esto esta funcionando o no?",
     "created_by": 5
 }
 
 ###
-PUT {{url}}/tickets/5
+PUT {{url}}/tickets/51
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE4LCJ1c2VyUm9sIjoidXNlciIsImV4cCI6MTc0Mzc4MTE1MiwiaWF0IjoxNzQzNjk0NzUyfQ.xywUYVv57sLYBbu6P6LwmjakUT786H5tUFic3bGJqdg
 
 { 
-    "title": "Prueba de actualización 2",
+    "title": "Prueba de actualización 45",
     "description": "A ver si esto actualiza",
     "created_by": 3
 }
 
 ###
-DELETE {{url}}/tickets/5
+DELETE {{url}}/tickets/50
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE4LCJ1c2VyUm9sIjoiZWRpdG9yIiwiZXhwIjoxNzQzNzgwOTQ2LCJpYXQiOjE3NDM2OTQ1NDZ9.nHK1XC6e4eJCDZL9BAqPh60sROMQOc5zPiQeQJvzKXk
+
 
 ###
 POST {{url}}/users/login

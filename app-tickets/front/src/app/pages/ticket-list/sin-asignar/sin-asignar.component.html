@@ -1,6 +1,18 @@
+@if(userLogged.userRol === 'admin'){
 <h4 class="text-center">Ticket sin asignar</h4>
 <div class="ticket-container">
   @for(tick of arrTickets; track tick.id){
   <ticket-card [ticket]="tick" (clickDelete)="onClickDelete($event)"></ticket-card>
   }
 </div>
+}@else if( userLogged.userRol === 'editor' ){
+<h4 class="text-center">El Listado de tus tickets</h4>
+<div class="ticket-container">
+  @for(tick of arrTickets; track tick.id){
+  <ticket-card [ticket]="tick" (clickDelete)="onClickDelete($event)"></ticket-card>
+  }
+</div>
+}@else if(userLogged.userRol === 'user'){
+<h4 class="text-center">Solo puedes quejarte</h4>
+<button class="btn btn-dark" [routerLink]="['/tickets', 'new']">Poner un ticket</button>
+}

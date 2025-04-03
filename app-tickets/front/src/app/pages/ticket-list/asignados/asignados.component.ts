@@ -4,6 +4,7 @@ import { TicketsService } from '../../../services/tickets.service';
 import { TicketCardComponent } from '../../../components/ticket-card/ticket-card.component';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { UsersService } from '../../../services/users.service';
 
 @Component({
   selector: 'app-asignados',
@@ -14,14 +15,22 @@ import { Router } from '@angular/router';
 export class AsignadosComponent {
   arrTickets: Ticket[] = [];
   router = inject(Router);
+  userLogged: any;
+
 
   // Inyectamos servicio
   ticketsService = inject(TicketsService);
+  usersService = inject(UsersService);
 
   async ngOnInit() {
     // Ejecutar el método del servicio para recuperar los tickets
+    this.userLogged = this.usersService.getUserRolFromToken2()
     try {
-      this.arrTickets = await this.ticketsService.getAllWithAssigned();
+      if (this.userLogged.userRol === 'admin') {
+        this.arrTickets = await this.ticketsService.getAllWithAssigned();
+      } else if (this.userLogged.userRol === 'editor') {
+        this.arrTickets = await this.ticketsService.getTicketsById(this.userLogged.userId)
+      }
     } catch ({ error }: any) {
       Swal.fire({
         title: 'Error!',

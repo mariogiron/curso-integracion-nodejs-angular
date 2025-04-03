@@ -27,6 +27,8 @@ Response: Un único objeto con los datos del ticket
 ## Inteceptor para validar las peticiones a api ✅
 
 ## trabajo con roles / admin, user, editor
-   - admin => pueda hacer cualquier cosas dentro del aplicacion
-   - editor => solo pueder ver tickets
-   - user => solo puede crear tickets 
+   - admin => pueda hacer cualquier cosas dentro del aplicacion ✅
+   - editor => solo pueder ver sus tickets, crearlos y modificarlos ✅
+   - user => solo puede crear ticketss ✅
+
+### actualizacion permita cambiar la prioridad de un ticket
