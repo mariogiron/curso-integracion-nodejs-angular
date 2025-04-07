@@ -1,0 +1,10 @@
+@url  = http://localhost:3000/api
+
+###
+GET {{url}}/documents
+
+###
+POST {{url}}/documents
+
+###
+DELETE {{url}}/documents/62781jd
