@@ -25,14 +25,16 @@ const storage = multer.diskStorage({
         fnCreateFile(null, isPdf ? 'uploads/pdfs' : 'uploads/images')
     },
     filename: function (req, file, fnCreateFile) {
-        fnCreateFile(null, 'nombreArchivo') //TODO: estudiar que nombre le ponemos al archivo)
+        fnCreateFile(null, Date.now() + '-' + file.originalname)
+        //TODO: estudiar que nombre le ponemos al archivo  1234567-doc2025_finanzas.pdf
     }
 })
 
-
+//middelware
+const upload = multer({ storage })
 
 router.get('/', getAllDocuments);
 router.delete('/:id', deleteDocument)
-router.post('/', uploadDocument)
+router.post('/', upload.fields([{ name: 'pdf' }, { name: 'image' }]), uploadDocument)
 
 module.exports = router;
