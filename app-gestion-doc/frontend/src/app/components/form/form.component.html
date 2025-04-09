@@ -7,11 +7,13 @@
   <div class="my-2">
     <label class="form-label" for="pdf">Documento PDF</label>
     <!-- en los campos de tipo file vamos a cargar un evento que actualice el valor del campo con el nombre del archivo a enviar -->
-    <input class="form-control" id="pdf" type="file" accept="application/pdf" (change)="onFileSelected($event, 'pdf')">
+    <input class="form-control" id="pdf" type="file" accept="application/pdf" (change)="onFileSelected($event, 'pdf')"
+      #filePdf>
   </div>
   <div class="my-2">
     <label class="form-label" for="image">Imagen del documento</label>
-    <input type="file" class="form-control" id="image" accept="image/*" (change)="onFileSelected($event, 'image')">
+    <input type="file" class="form-control" id="image" accept="image/*" (change)="onFileSelected($event, 'image')"
+      #fileImg>
   </div>
   <div class="my-2">
     <input type="submit" class="btn btn-danger" value="Subir documento" [disabled]="form.invalid">

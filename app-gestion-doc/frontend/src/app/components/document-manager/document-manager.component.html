@@ -1,6 +1,6 @@
 <section class="card p-3 border border-1 border-danger">
-  <app-form />
+  <app-form (saveDocumentEmitter)="onSaveDocument()" />
 </section>
 <section class="mt-4">
-  <app-document-list></app-document-list>
+  <app-document-list [documentCharge]="listDocumentCharge"></app-document-list>
 </section>

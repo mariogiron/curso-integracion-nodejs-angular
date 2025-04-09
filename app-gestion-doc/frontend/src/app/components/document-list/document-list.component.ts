@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { DocumentCardComponent } from '../document-card/document-card.component';
 import { Document } from '../../interfaces/document.interface';
 import { toast } from 'ngx-sonner';
@@ -14,8 +14,13 @@ import { environment } from '../../../environments/environment.development';
 export class DocumentListComponent {
   documents: Document[] = [];
   documentsService = inject(DocumentsService);
+  @Input() documentCharge: boolean = false;
 
   ngOnInit() {
+    this.loadDocuments()
+  }
+
+  ngOnChanges() {
     this.loadDocuments()
   }
 

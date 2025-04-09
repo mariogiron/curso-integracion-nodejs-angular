@@ -9,5 +9,9 @@ import { DocumentListComponent } from "../document-list/document-list.component"
   styleUrl: './document-manager.component.css'
 })
 export class DocumentManagerComponent {
+  listDocumentCharge: boolean = false;
 
+  onSaveDocument() {
+    this.listDocumentCharge = !this.listDocumentCharge;
+  }
 }

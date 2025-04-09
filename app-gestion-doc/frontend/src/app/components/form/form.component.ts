@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, ElementRef, EventEmitter, inject, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DocumentsService } from '../../services/documents.service';
 import { toast } from 'ngx-sonner';
@@ -13,6 +13,9 @@ export class FormComponent {
   form!: FormGroup;
   documentsServices = inject(DocumentsService)
   fb = inject(FormBuilder);
+  @Output() saveDocumentEmitter: EventEmitter<void> = new EventEmitter()
+  //primera forma para acceder desde el ts a elementos del dom
+  @ViewChild('filePdf') filePdf!: ElementRef;
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -28,8 +31,6 @@ export class FormComponent {
       //añadir al formulario el campo nombre del archivo y el archivo.
       this.form.get(field)?.setValue(file)
     }
-
-
   }
 
   async upload() {
@@ -48,6 +49,17 @@ export class FormComponent {
     if (response) {
       toast.success('Documentos guardados correctamente');
       this.form.reset();
+      // existe un problema en javascript que no se vacian los campos de tipo input file excepto cuando se borrar el archivo.
+
+      //segunda opcion para acceder a elemento del desde ts.
+      let inputImg: HTMLInputElement | null = document.querySelector('#image')
+      if (inputImg) {
+        inputImg.value = ""
+      }
+
+      this.filePdf.nativeElement.value = ""
+      //cuando tenga el success comunique al padre que ha guardado correctamente el documento. Vamos enviar un aviso de que hemos guardado en la base de datos
+      this.saveDocumentEmitter.emit();
     }
 
   }
