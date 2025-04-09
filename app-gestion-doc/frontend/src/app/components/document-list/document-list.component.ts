@@ -24,6 +24,10 @@ export class DocumentListComponent {
     this.loadDocuments()
   }
 
+  onDeleteDocument() {
+    this.loadDocuments()
+  }
+
   async loadDocuments() {
     try {
       this.documents = await this.documentsService.getAll();

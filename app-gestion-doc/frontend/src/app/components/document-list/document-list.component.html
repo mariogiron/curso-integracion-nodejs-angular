@@ -2,7 +2,7 @@
   <!-- replicar usando el @for -->
   @for(document of documents; track document._id){
   <article class="col-12 col-md-6">
-    <app-document-card [document]="document"></app-document-card>
+    <app-document-card [document]="document" (deleteDocumentEmitter)="onDeleteDocument()"></app-document-card>
   </article>
   }
 </div>

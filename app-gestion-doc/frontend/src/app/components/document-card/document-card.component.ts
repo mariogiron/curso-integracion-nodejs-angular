@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { Document } from '../../interfaces/document.interface';
 import { environment } from '../../../environments/environment.development';
 import { toast } from 'ngx-sonner';
@@ -14,12 +14,14 @@ export class DocumentCardComponent {
   @Input() document: Document | undefined;
   server: string = environment.baseUrl;
   documentsService = inject(DocumentsService)
+  @Output() deleteDocumentEmitter: EventEmitter<void> = new EventEmitter()
 
   async deleteDoc(_id: string | undefined) {
     try {
       const response = await this.documentsService.deleteDocument(_id)
       if (response) {
-        this.document = undefined;
+        // he borrado correctamente voy a avisar al padre de que recargue la lista de documento
+        this.deleteDocumentEmitter.emit()
         toast.success('Documento borrado correctamente')
       }
     } catch (err: any) {
