@@ -4,6 +4,7 @@
 
 .chat ul {
   max-height: 100px;
+  overflow-y: scroll;
 }
 
 .chat ul li {

@@ -1,16 +1,18 @@
 <div class="card p-2 bg-dark m-1 rounded-4 chat">
   <p class="ps-3 text-white"><strong>Conectados:</strong>12</p>
   <ul class="bg-light p-3 m-2 list-unstyled">
-    <li class="pregunta"><span>Juan dice: Hola como estas</span></li>
-    <li class="respuesta"><span>Pepe dice: Estoy bien gracias</span></li>
+    @for( message of arrMessages; track message ){
+    <li class="pregunta"><span>{{message.name}} dice: {{message.message}}</span></li>
+    }
+    <!-- <li class="respuesta"><span>Pepe dice: Estoy bien gracias</span></li> -->
   </ul>
-  <form action="" class="p-2">
+  <form [formGroup]="chatForm" (ngSubmit)="getMessage()" class="p-2">
     <div class="d-flex gap-2">
       <div>
-        <input class="form-control" type="text" placeholder="nombre">
+        <input class="form-control" type="text" placeholder="nombre" formControlName="name">
       </div>
       <div>
-        <input class="form-control" type="text" placeholder="mensaje">
+        <input class="form-control" type="text" placeholder="mensaje" formControlName="message">
       </div>
       <div>
         <input type="submit" value="Enviar" class="btn btn-danger">
