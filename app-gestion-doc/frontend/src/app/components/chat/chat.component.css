@@ -3,7 +3,7 @@
 }
 
 .chat ul {
-  max-height: 100px;
+  max-height: 200px;
   overflow-y: scroll;
 }
 
@@ -30,4 +30,21 @@
   color: white;
   max-width: 50%;
   margin-left: auto;
+}
+
+.info {
+  text-align: center;
+  width: 100%;
+  text-decoration: underline;
+  color: darkcyan;
+  font-size: 10px;
+}
+
+
+.disconnect {
+  text-align: center;
+  width: 100%;
+  text-decoration: underline;
+  color: tomato;
+  font-size: 10px;
 }

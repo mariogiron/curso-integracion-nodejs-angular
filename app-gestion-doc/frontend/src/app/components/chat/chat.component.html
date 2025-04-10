@@ -1,8 +1,17 @@
 <div class="card p-2 bg-dark m-1 rounded-4 chat">
-  <p class="ps-3 text-white"><strong>Conectados:</strong>12</p>
+  <p class="ps-3 text-white"><strong>Conectados:</strong>{{numberClientes}}</p>
   <ul class="bg-light p-3 m-2 list-unstyled">
     @for( message of arrMessages; track message ){
-    <li class="pregunta"><span>{{message.name}} dice: {{message.message}}</span></li>
+    @if(message.name === 'info' ){
+    <li class="info">info: {{message.message}}</li>
+    }@else if(message.name === 'disconnect'){
+    <li class="disconnect">info: {{message.message}}</li>
+    }
+    @else{
+    <li [class]="{ pregunta: message.socketId === socket.id, respuesta: message.socketId !== socket.id }">
+      <span>{{message.name}} dice: {{message.message}}</span>
+    </li>
+    }
     }
     <!-- <li class="respuesta"><span>Pepe dice: Estoy bien gracias</span></li> -->
   </ul>

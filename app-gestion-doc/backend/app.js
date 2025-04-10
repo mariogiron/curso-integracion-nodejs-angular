@@ -6,6 +6,8 @@ require('dotenv').config();
 
 //configuracion socketIO
 const socketIO = require('socket.io');
+//la tabla para guardar mensajes
+const MessageSchema = require('./models/chat.model');
 
 const app = express();
 app.use(cors());
@@ -35,14 +37,37 @@ const io = socketIO(server, {
 })
 
 io.on('connection', async (socket) => {
-    console.log('nueva conexion')
-
+    //numero de usuarios conectados
+    io.emit('number_users', io.engine.clientsCount);
     //ponerme a escuchar lo que los usuario me manden como chat_message
-    socket.on('chat_message', (data) => {
-        //console.log(data);
-        //emitieramos al resto de usuario conectado los mensajes recibidos.
-        io.emit('chat_message_server', data)
+    socket.on('chat_message', async (data) => {
+        //vamos a guardar el mensaje en la BBDD
+        //no poner await para forzar el guardado en BBDD y depues emitir el mensaje.
+        let response = MessageSchema.create(data);
+        if (response) {
+            //emitieramos al resto de usuario conectado los mensajes recibidos.
+            io.emit('chat_message_server', data)
+        }
+
+    })
+    // emitir un mensaje especifico a todos los usuario menos al que se conecta o al que lo emite.
+    socket.broadcast.emit('chat_message_server', {
+        message: 'Nuevo usuario conectado',
+        name: 'info'
+    })
+    //que me avise cuando un cliente se desconecta. El Evento disconnect se emite cuando el cliente se desconecta. no es un evento inventado por nosotros. es un socket.io
+    socket.on('disconnect', () => {
+        socket.broadcast.emit('chat_message_server', {
+            message: 'Se ha desconectado un usuario',
+            name: 'disconnect'
+        })
+        io.emit('number_users', io.engine.clientsCount)
     })
 
+    //cuando se inicie el chat para un usuario cargar los ultimos 5 mensajes. chat_init
+    const messages = await MessageSchema.find().sort({ createdAt: -1 }).limit(6);
+    socket.emit('iniciar_chat', {
+        arrMessages: messages
+    })
 })
 
